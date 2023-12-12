@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name= "tn_estado")
+@Table(name= "tb_estado")
 @Data
 public class Estado {
 
