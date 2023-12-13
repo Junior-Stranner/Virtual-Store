@@ -4,5 +4,7 @@ A virtual store project that I am developing with Spring and React and Next, wit
 
 
 
+This is the registers of estados in my DataBase with correctly Times
+
 
 ![Alt text](image.png)
