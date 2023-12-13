@@ -1,8 +1,11 @@
 package br.com.jujubaprojects.lojavirtual.Service;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.EstadoRepository;
@@ -18,10 +21,20 @@ public class EstadoService {
         return this.estadoRepository.findAll();
     }
 
-    public Estado inserir( Estado estado){
+    public ResponseEntity<?> inserir( Estado estado){
+
+        List<Estado> estados = this.estadoRepository.findAll();
+        boolean estadoExistente = estados.stream().anyMatch(eExistente  -> eExistente.getNome().equals(estado.getNome()));
     //    estado.setDataCriacao(LocalDateTime.now()); // Configura a data de criação manualmente
-         Estado estadoNovo = this.estadoRepository.saveAndFlush(estado);
-         return estadoNovo;
+
+        if(estadoExistente){
+            return new ResponseEntity<>("Não é possivel criar estados com o mesmo nome" , HttpStatus.BAD_REQUEST);
+        
+        }else{
+            
+       return new ResponseEntity<>(this.estadoRepository.save(estado) , HttpStatus.CREATED);
+         
+        }
     }
    
     public Estado alterar(Estado estado){

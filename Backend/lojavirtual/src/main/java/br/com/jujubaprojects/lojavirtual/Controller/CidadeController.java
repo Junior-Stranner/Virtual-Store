@@ -13,42 +13,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jujubaprojects.lojavirtual.Service.EstadoService;
+import br.com.jujubaprojects.lojavirtual.Service.CidadeService;
+import br.com.jujubaprojects.lojavirtual.entity.Cidade;
 import br.com.jujubaprojects.lojavirtual.entity.Estado;
 
 @RestController
-@RequestMapping("/api/estado")
-public class EstadoController {
+@RequestMapping("/api/cidade")
+public class CidadeController {
     
-    @Autowired
-    private EstadoService estadoService;
+   @Autowired
+   private CidadeService cidadeService;
 
-    @GetMapping("/")
-    public List<Estado> buscarTodos(){
-        return this.estadoService.buscarTodos();
+ @GetMapping("/")
+    public List<Cidade> buscarTodos(){
+        return this.cidadeService.buscarTodos();
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> inserir(@RequestBody Estado estado){
-         return this.estadoService.inserir(estado);
+    public Cidade inserir(@RequestBody Cidade cidade){
+         return this.cidadeService.inserir(cidade);
     }
    
     @PutMapping("/")
-    public ResponseEntity<Estado> alterar(@RequestBody Estado estado) {
-       this.estadoService.alterar(estado);
-        
-        if (estado != null) {
-            return ResponseEntity.ok(this.estadoService.alterar(estado));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<?> alterar(@RequestBody Cidade cidade) {
+      return  this.cidadeService.alterar(cidade);
     }
     
     
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Estado> excluir(@PathVariable("id") Long id){
-       this.estadoService.excluir(id);
+       this.cidadeService.excluir(id);
        return ResponseEntity.ok().build();
     }
+
 }

@@ -36,7 +36,7 @@ public class Estado {
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
    @LastModifiedDate
-    @Column(name = "data_atualizacao")
+    @Column(name = "data_atualizacao" , updatable = true)
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
