@@ -31,8 +31,8 @@ public class EstadoService {
             return new ResponseEntity<>("Não é possivel criar estados com o mesmo nome" , HttpStatus.BAD_REQUEST);
         
         }else{
-            
-       return new ResponseEntity<>(this.estadoRepository.save(estado) , HttpStatus.CREATED);
+            this.estadoRepository.save(estado);
+       return new ResponseEntity<>("Estado criado com sucesso !!", HttpStatus.CREATED); 
          
         }
     }

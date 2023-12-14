@@ -34,15 +34,16 @@ public class CidadeController {
          return this.cidadeService.inserir(cidade);
     }
    
-    @PutMapping("/")
-    public ResponseEntity<?> alterar(@RequestBody Cidade cidade) {
-      return  this.cidadeService.alterar(cidade);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> alterar(@RequestBody Cidade cidade ,@PathVariable long id) {
+        return this.cidadeService.alterar(cidade, id);
+       
     }
     
     
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Estado> excluir(@PathVariable("id") Long id){
+    public ResponseEntity<Estado> excluir(@PathVariable("id") long id){
        this.cidadeService.excluir(id);
        return ResponseEntity.ok().build();
     }

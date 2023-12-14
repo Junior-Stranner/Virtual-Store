@@ -30,7 +30,8 @@ public class EstadoController {
 
     @PostMapping("/")
     public ResponseEntity<?> inserir(@RequestBody Estado estado){
-         return this.estadoService.inserir(estado);
+       return this.estadoService.inserir(estado);
+     // return ResponseEntity.ok().body("Estado criado com sucesso !");
     }
    
     @PutMapping("/")
