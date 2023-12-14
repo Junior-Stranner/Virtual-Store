@@ -13,21 +13,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_cidade")
+@Table(name = "tb_permissao")
 @Data
-public class Cidade {
+public class Permissao {
     
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cidade_sequence")
-    @SequenceGenerator(name = "cidade_sequence", sequenceName = "cidade_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permissao_sequence")
+    @SequenceGenerator(name = "permissao_sequence", sequenceName = "permissao_sequence", allocationSize = 1)
     private long id;
     private String nome;
 
@@ -42,8 +39,4 @@ public class Cidade {
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
-
-    @ManyToOne()
-    @JoinColumn(name = "estado_id")
-    private Estado estado;
 }

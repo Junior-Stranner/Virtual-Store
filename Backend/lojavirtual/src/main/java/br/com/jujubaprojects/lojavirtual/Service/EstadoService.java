@@ -27,7 +27,6 @@ public class EstadoService {
         List<Estado> estados = this.estadoRepository.findAll();
         boolean estadoExistente = estados.stream().anyMatch(eExistente  -> eExistente.getNome().equals(estado.getNome()));
     //    estado.setDataCriacao(LocalDateTime.now()); // Configura a data de criação manualmente
-
         if(estadoExistente){
             return new ResponseEntity<>("Não é possivel criar estados com o mesmo nome" , HttpStatus.BAD_REQUEST);
         

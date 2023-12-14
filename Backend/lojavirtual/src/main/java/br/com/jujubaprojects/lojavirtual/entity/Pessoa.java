@@ -20,16 +20,21 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_cidade")
+@Table(name = "tb_pessoa")
 @Data
-public class Cidade {
+public class Pessoa {
     
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cidade_sequence")
-    @SequenceGenerator(name = "cidade_sequence", sequenceName = "cidade_sequence", allocationSize = 1)
+     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequence")
+    @SequenceGenerator(name = "pessoa_sequence", sequenceName = "pessoa_sequence", allocationSize = 1)
     private long id;
+
     private String nome;
+    private String cof;
+    private String email;
+    private String senha;
+    private String endereco;
+    private String cep;
 
     @CreatedDate
     @Column(name = "data_criacao" , updatable = false)
@@ -44,6 +49,6 @@ public class Cidade {
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
     @ManyToOne()
-    @JoinColumn(name = "estado_id")
-    private Estado estado;
+    @JoinColumn(name = "cidade_id")
+   private Cidade cidade;
 }

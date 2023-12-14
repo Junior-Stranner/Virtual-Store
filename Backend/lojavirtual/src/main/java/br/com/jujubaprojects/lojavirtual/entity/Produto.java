@@ -20,17 +20,20 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_cidade")
+@Table(name = "tb_produto")
 @Data
-public class Cidade {
+public class Produto {
     
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cidade_sequence")
-    @SequenceGenerator(name = "cidade_sequence", sequenceName = "cidade_sequence", allocationSize = 1)
+      @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequence")
+    @SequenceGenerator(name = "pessoa_sequence", sequenceName = "pessoa_sequence", allocationSize = 1)
     private long id;
-    private String nome;
 
+    private String descricaoCurta;
+    private String descricaoDetalhada;
+    private String valorCusto;
+    private String valorVenda;
+ 
     @CreatedDate
     @Column(name = "data_criacao" , updatable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
@@ -44,6 +47,11 @@ public class Cidade {
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
     @ManyToOne()
-    @JoinColumn(name = "estado_id")
-    private Estado estado;
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
+
+     @ManyToOne()
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
 }
