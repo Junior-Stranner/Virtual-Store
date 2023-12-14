@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.CidadeRepository;
 import br.com.jujubaprojects.lojavirtual.entity.Cidade;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CidadeService {
@@ -22,12 +23,12 @@ public class CidadeService {
     }
 
     public Cidade inserir( Cidade cidade){
-        cidade.setDataCriacao(LocalDateTime.now());
+       // cidade.setDataCriacao(LocalDateTime.now());
          return  this.cidadeRepository.save(cidade);
     }
    
     public ResponseEntity<?> alterar(Cidade cidade, long id){
-        cidade.setDataAtualizacao(LocalDateTime.now());
+      //  cidade.setDataAtualizacao(LocalDateTime.now());
 
        Optional<Cidade> cidadeOptional = this.cidadeRepository.findById(id);
 
@@ -44,9 +45,11 @@ public class CidadeService {
         this.cidadeRepository.save(cidadeExistente);
         return ResponseEntity.ok().body("Cidade atualizada com sucesso !");
 
-       }else{
-        
-         return  ResponseEntity.notFound().build();
+       }else{ 
+
+        throw new EntityNotFoundException("Cidade não encontrada");
+       // return ResponseEntity.notFound().build(); 
+       
 
        }
     }

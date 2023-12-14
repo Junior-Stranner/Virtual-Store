@@ -46,12 +46,4 @@ public class Cidade {
     @ManyToOne()
     @JoinColumn(name = "estado_id")
     private Estado estado;
-
-    public boolean isEmpty() {
-      return false;
-    }
-
-    public Object stream() {
-        return null;
-    }
 }

@@ -48,7 +48,7 @@ public class Estado {
     private Data  dataNascimento;*/
 
     
-  /*   @PrePersist
+  /*@PrePersist
     protected void onCreate() {
         LocalDateTime agora = LocalDateTime.now();
 

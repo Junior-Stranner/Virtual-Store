@@ -1,7 +1,7 @@
 package br.com.jujubaprojects.lojavirtual.Service;
 
-import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.EstadoRepository;
 import br.com.jujubaprojects.lojavirtual.entity.Estado;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class EstadoService {
@@ -37,13 +38,31 @@ public class EstadoService {
         }
     }
    
-    public Estado alterar(Estado estado){
+    public ResponseEntity<?> alterar(Estado estado){
 //   estado.setDataAtualizacao(LocalDateTime.now()); // Configura a data de atualização manualmente
-        return this.estadoRepository.save(estado);
+       Optional<Estado> estadoOptional = this.estadoRepository.findById(estado.getId());
+        
+
+       if(estadoOptional.isPresent()){
+        Estado estadoExistente = estadoOptional.get();
+
+        estadoExistente.setNome(estado.getNome());
+        estadoExistente.setSigla(estado.getSigla());
+        estadoExistente.setDataCriacao(estado.getDataCriacao());
+        estado.setDataAtualizacao(estado.getDataAtualizacao());
+
+           this.estadoRepository.save(estadoExistente);
+        return  ResponseEntity.ok().body("estado Atualizado com succeso !!");
+       }else{
+        throw new EntityNotFoundException("Cidade não encontrada");
+       }
+        
+       
     }
 
-    public void excluir(Long id){
+    public ResponseEntity<?> excluir(Long id){
        Estado estado = this.estadoRepository.findById(id).get();
        this.estadoRepository.delete(estado);
+       return ResponseEntity.ok().body("Estado excluido com sucesso !");
     }
 }

@@ -35,21 +35,14 @@ public class EstadoController {
     }
    
     @PutMapping("/")
-    public ResponseEntity<Estado> alterar(@RequestBody Estado estado) {
-       this.estadoService.alterar(estado);
-        
-        if (estado != null) {
-            return ResponseEntity.ok(this.estadoService.alterar(estado));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<?> alterar(@RequestBody Estado estado) {
+        return this.estadoService.alterar(estado);
+       
     }
-    
-    
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Estado> excluir(@PathVariable("id") Long id){
+    public ResponseEntity<String> excluir(@PathVariable("id") Long id){
        this.estadoService.excluir(id);
-       return ResponseEntity.ok().build();
+       return ResponseEntity.ok().body("Estado excluido com sucesso !");
     }
 }
