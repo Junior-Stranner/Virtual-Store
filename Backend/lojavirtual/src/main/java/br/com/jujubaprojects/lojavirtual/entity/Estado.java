@@ -29,14 +29,14 @@ public class Estado {
     private String nome;
     private String sigla;
 
-   @CreatedDate
-    @Column(name = "data_criacao", updatable = false)
+ //  @CreatedDate
+ //   @Column(name = "data_criacao", updatable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
-   @LastModifiedDate
-    @Column(name = "data_atualizacao" , updatable = true)
+  // @LastModifiedDate
+  //  @Column(name = "data_atualizacao" , updatable = true)
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
@@ -48,7 +48,7 @@ public class Estado {
     private Data  dataNascimento;*/
 
     
-  /*@PrePersist
+  /*   @PrePersist
     protected void onCreate() {
         LocalDateTime agora = LocalDateTime.now();
 

@@ -1,5 +1,6 @@
 package br.com.jujubaprojects.lojavirtual.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.CategoriaRepository;
 import br.com.jujubaprojects.lojavirtual.entity.Categoria;
-import br.com.jujubaprojects.lojavirtual.entity.Estado;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -36,7 +37,27 @@ public class CategoriaService {
             return new ResponseEntity<>("Categoria adicionada com sucesso", HttpStatus.CREATED);
 
         }
-        
     }
 
+    public ResponseEntity<?> alterar(Categoria categoria){
+
+        Optional<Categoria> categoriaOptional = this.catogoriaRepository.findById(categoria.getId());
+     //   Categoria categoriaExistente = null;
+
+        if(categoriaOptional.isPresent()){
+        Categoria  categoriaExistente = categoriaOptional.get();
+
+        categoriaExistente.setNome(categoria.getNome());
+        categoriaExistente.setDataCriacao(categoriaExistente.getDataCriacao());
+        
+        categoriaExistente.setDataAtualizacao(LocalDateTime.now());
+
+           this.catogoriaRepository.save(categoriaExistente);
+             return ResponseEntity.ok().body("Categoria atualizada com sucesso !!");
+        }else {
+            throw new EntityNotFoundException("Categoria não encontrada ! ");
+           // return ResponseEntity.badRequest().body("Categoria não encontrada !");
+
+        }
+    }
 }

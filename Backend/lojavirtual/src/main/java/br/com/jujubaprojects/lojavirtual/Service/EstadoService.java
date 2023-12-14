@@ -1,5 +1,6 @@
 package br.com.jujubaprojects.lojavirtual.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,8 @@ public class EstadoService {
         estadoExistente.setNome(estado.getNome());
         estadoExistente.setSigla(estado.getSigla());
         estadoExistente.setDataCriacao(estado.getDataCriacao());
-        estado.setDataAtualizacao(estado.getDataAtualizacao());
+        
+        estado.setDataAtualizacao(LocalDateTime.now());
 
            this.estadoRepository.save(estadoExistente);
         return  ResponseEntity.ok().body("estado Atualizado com succeso !!");
