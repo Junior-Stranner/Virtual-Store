@@ -29,13 +29,13 @@ public class Estado {
     private String nome;
     private String sigla;
 
-   @CreatedDate
+    @CreatedDate
     @Column(name = "data_criacao", updatable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
-   @LastModifiedDate
+    @LastModifiedDate
     @Column(name = "data_atualizacao" , updatable = true)
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")

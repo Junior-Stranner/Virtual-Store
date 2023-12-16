@@ -30,7 +30,7 @@ public class Pessoa {
     private long id;
 
     private String nome;
-    private String cof;
+    private String cpf;
     private String email;
     private String senha;
     private String endereco;
@@ -51,4 +51,5 @@ public class Pessoa {
     @ManyToOne()
     @JoinColumn(name = "cidade_id")
    private Cidade cidade;
+   
 }

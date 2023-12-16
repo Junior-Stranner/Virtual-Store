@@ -27,9 +27,10 @@ public class CategoriaService {
     public ResponseEntity<?> inserir(Categoria categoria){
 
        List<Categoria> categorias = this.catogoriaRepository.findAll();
-        boolean categoriaExistente = categorias.stream().anyMatch(cExistente  -> cExistente.getNome().equals(categoria.getNome()));
+        boolean categoriaExistente = categorias.stream().anyMatch(cExistente -> cExistente.getNome() != null && categoria.getNome() != null &&
+        cExistente.getNome().equals(categoria.getNome()));
 
-        if(categoriaExistente){
+         if(categoriaExistente){
            
             return ResponseEntity.badRequest().body("não é possível criar categorias com o mesmo nome !");
         }else{
@@ -59,5 +60,10 @@ public class CategoriaService {
            // return ResponseEntity.badRequest().body("Categoria não encontrada !");
 
         }
+    }
+
+    public void excluir(Long id){
+       Categoria categoria  = this.catogoriaRepository.findById(id).get();
+      this.catogoriaRepository.delete(categoria);
     }
 }
