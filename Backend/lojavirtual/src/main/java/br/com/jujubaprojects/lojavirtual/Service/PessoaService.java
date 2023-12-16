@@ -27,6 +27,11 @@ public class PessoaService {
         List<Pessoa> pessoas = this.pessoaRepository.findAll();
         boolean pessoaExistente = pessoas.stream().anyMatch(pExistente -> pExistente.getCpf().equals(pessoa.getCpf()));
 
+
+        if (pessoa.getNome().isEmpty()) {
+            System.out.println("Nome da categoria é nulo!");
+            return ResponseEntity.badRequest().body("Digite o nome da Categoria!");
+      } 
         if(pessoaExistente){
           
             return ResponseEntity.badRequest().body("Pessoa Existente");

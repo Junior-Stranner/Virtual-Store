@@ -26,9 +26,13 @@ public class EstadoService {
     public ResponseEntity<?> inserir( Estado estado){
 
         List<Estado> estados = this.estadoRepository.findAll();
-        boolean estadoExistente = estados.stream().anyMatch(eExistente -> eExistente.getNome() != null && estado.getNome() != null && 
-        eExistente.getNome().equals(estado.getNome()) );
+        boolean estadoExistente = estados.stream().anyMatch(eExistente ->  eExistente.getNome().equals(estado.getNome()) );
         //    estado.setDataCriacao(LocalDateTime.now()); // Configura a data de criação manualmente
+
+        if (estado.getNome().isEmpty()) {
+            System.out.println("Nome da categoria é nulo!");
+            return ResponseEntity.badRequest().body("Digite o nome da Categoria!");
+     } 
         if(estadoExistente){
             return new ResponseEntity<>("Não é possivel criar estados com o mesmo nome" , HttpStatus.BAD_REQUEST);
         
