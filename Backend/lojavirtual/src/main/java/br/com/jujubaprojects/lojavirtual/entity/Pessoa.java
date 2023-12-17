@@ -17,11 +17,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 @Entity
 @Table(name = "tb_pessoa")
-@Data
+
 public class Pessoa {
     
      @Id
@@ -30,7 +29,7 @@ public class Pessoa {
     private long id;
 
     private String nome;
-    private String cpf;
+    private String cpf = "";
     private String email;
     private String senha;
     private String endereco;
@@ -51,5 +50,106 @@ public class Pessoa {
     @ManyToOne()
     @JoinColumn(name = "cidade_id")
    private Cidade cidade;
+
+   public Pessoa(){
+
+   }
+
+
+   public Pessoa(long id, String nome, String cpf, String email, String senha, String endereco, String cep,
+         LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, Cidade cidade) {
+      this.id = id;
+      this.nome = nome;
+      this.cpf = "";
+      this.email = email;
+      this.senha = senha;
+      this.endereco = endereco;
+      this.cep = cep;
+      this.dataCriacao = dataCriacao;
+      this.dataAtualizacao = dataAtualizacao;
+      this.cidade = cidade;
+   }
+
+   public long getId() {
+      return id;
+   }
+
+   public void setId(long id) {
+      this.id = id;
+   }
+
+   public String getNome() {
+      return nome;
+   }
+
+   public void setNome(String nome) {
+      this.nome = nome;
+   }
+
+   public String getCpf() {
+      return cpf;
+   }
+
+   public void setCpf(String cpf) {
+      this.cpf = cpf;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getSenha() {
+      return senha;
+   }
+
+   public void setSenha(String senha) {
+      this.senha = senha;
+   }
+
+   public String getEndereco() {
+      return endereco;
+   }
+
+   public void setEndereco(String endereco) {
+      this.endereco = endereco;
+   }
+
+   public String getCep() {
+      return cep;
+   }
+
+   public void setCep(String cep) {
+      this.cep = cep;
+   }
+
+   public LocalDateTime getDataCriacao() {
+      return dataCriacao;
+   }
+
+   public void setDataCriacao(LocalDateTime dataCriacao) {
+      this.dataCriacao = dataCriacao;
+   }
+
+   public LocalDateTime getDataAtualizacao() {
+      return dataAtualizacao;
+   }
+
+   public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
+      this.dataAtualizacao = dataAtualizacao;
+   }
+
+   public Cidade getCidade() {
+      return cidade;
+   }
+
+   public void setCidade(Cidade cidade) {
+      this.cidade = cidade;
+   }
+
+
    
 }

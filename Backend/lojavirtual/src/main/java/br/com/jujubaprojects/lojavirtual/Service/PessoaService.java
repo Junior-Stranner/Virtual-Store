@@ -21,23 +21,32 @@ public class PessoaService {
 
     public List<Pessoa> buscarTodos(){
         return this.pessoaRepository.findAll();
+
     }
 
     public ResponseEntity<?> inserir(Pessoa pessoa){
+
+
+        if (pessoa.getCpf().isEmpty()) {
+            pessoa.setCpf("ValorPadraoParaCPF");
+        }
+
         List<Pessoa> pessoas = this.pessoaRepository.findAll();
         boolean pessoaExistente = pessoas.stream().anyMatch(pExistente -> pExistente.getCpf().equals(pessoa.getCpf()));
 
 
         if (pessoa.getNome().isEmpty()) {
             System.out.println("Nome da categoria é nulo!");
-            return ResponseEntity.badRequest().body("Digite o nome da Categoria!");
-      } 
-        if(pessoaExistente){
-          
+            return ResponseEntity.badRequest().body("Digite o nome da Pessoa!");
+
+      } else if(pessoaExistente){
+       
+
             return ResponseEntity.badRequest().body("Pessoa Existente");
-        }
+        }else{
         this.pessoaRepository.save(pessoa);
         return new ResponseEntity<>("Pessoa criada com sucesso ! ", HttpStatus.CREATED);
+        }
 
     }
 

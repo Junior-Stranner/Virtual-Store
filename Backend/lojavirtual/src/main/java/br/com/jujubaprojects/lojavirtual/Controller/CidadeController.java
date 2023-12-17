@@ -30,7 +30,7 @@ public class CidadeController {
     }
 
     @PostMapping("/")
-    public Cidade inserir(@RequestBody Cidade cidade){
+    public ResponseEntity<?> inserir(@RequestBody Cidade cidade){
          return this.cidadeService.inserir(cidade);
     }
    

@@ -30,17 +30,17 @@ public class EstadoService {
         //    estado.setDataCriacao(LocalDateTime.now()); // Configura a data de criação manualmente
 
         if (estado.getNome().isEmpty()) {
-            System.out.println("Nome da categoria é nulo!");
-            return ResponseEntity.badRequest().body("Digite o nome da Categoria!");
-     } 
-        if(estadoExistente){
+            System.out.println("Nome da estado é nulo!");
+            return ResponseEntity.badRequest().body("Digite o nome da Estado!");
+            
+     } else if(estadoExistente){
             return new ResponseEntity<>("Não é possivel criar estados com o mesmo nome" , HttpStatus.BAD_REQUEST);
         
         }else{
             this.estadoRepository.save(estado);
        return new ResponseEntity<>("Estado criado com sucesso !!", HttpStatus.CREATED); 
-         
         }
+        
     }
    
     public ResponseEntity<?> alterar(Estado estado){
@@ -71,4 +71,5 @@ public class EstadoService {
        this.estadoRepository.delete(estado);
        return ResponseEntity.ok().body("Estado excluido com sucesso !");
     }
+
 }

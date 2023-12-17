@@ -27,15 +27,15 @@ public class CategoriaService {
     public ResponseEntity<?> inserir(Categoria categoria){
 
        List<Categoria> categorias = this.catogoriaRepository.findAll();
-        boolean categoriaExistente = categorias.stream().anyMatch(cExistente -> cExistente.getNome().equals(categoria.getNome()));
+        boolean categoriaExistente = categorias.stream().anyMatch(caExistente -> caExistente.getNome().equals(categoria.getNome()));
 
         if (categoria.getNome().isEmpty()) {
             System.out.println("Nome da categoria é nulo!");
             return ResponseEntity.badRequest().body("Digite o nome da Categoria!");
-     } 
-     if(categoriaExistente){
+            
+     } else if(categoriaExistente){
            
-            return ResponseEntity.badRequest().body("não é possível criar categorias com o mesmo nome !");
+            return ResponseEntity.badRequest().body("Categoria existente!");
         }else{
               this.catogoriaRepository.save(categoria);
             return new ResponseEntity<>("Categoria adicionada com sucesso", HttpStatus.CREATED);

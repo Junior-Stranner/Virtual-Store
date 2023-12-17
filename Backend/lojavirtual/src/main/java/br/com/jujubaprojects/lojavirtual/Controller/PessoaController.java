@@ -1,5 +1,6 @@
 package br.com.jujubaprojects.lojavirtual.Controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class PessoaController {
 
     @PostMapping("/")
     public ResponseEntity<?> inserir(@RequestBody Pessoa pessoa){
+
       return  this.pessoaService.inserir(pessoa);
     }
 
