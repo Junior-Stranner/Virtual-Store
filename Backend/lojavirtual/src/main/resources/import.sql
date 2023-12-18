@@ -1,1 +1,1 @@
-insert into tb_pessoa (nome,cpf,email,senha,endereco,cep ) values ('jujuba', '445.675.457-98','jujub@gmail123.com', 'jujuba123',18765-5446);
+insert into tb_pessoa (id,nome,cpf,email,senha,endereco,cep cidade) values (1 'jujuba', '445.675.457-98','jujub@gmail123.com', 'jujuba123',18765-5446, );

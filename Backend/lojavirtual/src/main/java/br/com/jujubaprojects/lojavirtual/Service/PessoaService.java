@@ -26,11 +26,9 @@ public class PessoaService {
 
     public ResponseEntity<?> inserir(Pessoa pessoa){
 
-
         if (pessoa.getCpf().isEmpty()) {
             pessoa.setCpf("ValorPadraoParaCPF");
         }
-
         List<Pessoa> pessoas = this.pessoaRepository.findAll();
         boolean pessoaExistente = pessoas.stream().anyMatch(pExistente -> pExistente.getCpf().equals(pessoa.getCpf()));
 
@@ -67,7 +65,7 @@ public class PessoaService {
          pessoaExistente.setDataAtualizacao(LocalDateTime.now());
 
            this.pessoaRepository.save(pessoaExistente);
-           return ResponseEntity.ok().body("Pessoa alterada com sucesso");
+           return ResponseEntity.ok().body("Pessoa alterada com sucesso !");
         }else{
            throw new EntityNotFoundException("Pessoa não encontrada !");
         }
@@ -75,7 +73,7 @@ public class PessoaService {
     }
 
     public void excluir(Pessoa pessoa){
-   //   Pessoa pessoa = this.pessoaRepository.findById(id).get();
+  //    Pessoa pessoa = this.pessoaRepository.findById(id).get();
       this.pessoaRepository.delete(pessoa);
     }
 }

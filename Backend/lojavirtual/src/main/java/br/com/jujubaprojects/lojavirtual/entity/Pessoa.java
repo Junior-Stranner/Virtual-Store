@@ -29,7 +29,7 @@ public class Pessoa {
     private long id;
 
     private String nome;
-    private String cpf = "";
+    private String cpf = "cpfPadrão";
     private String email;
     private String senha;
     private String endereco;
@@ -60,7 +60,7 @@ public class Pessoa {
          LocalDateTime dataCriacao, LocalDateTime dataAtualizacao, Cidade cidade) {
       this.id = id;
       this.nome = nome;
-      this.cpf = "";
+      this.cpf = cpf;
       this.email = email;
       this.senha = senha;
       this.endereco = endereco;

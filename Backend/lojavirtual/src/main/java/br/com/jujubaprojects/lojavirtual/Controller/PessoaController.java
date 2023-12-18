@@ -1,12 +1,14 @@
 package br.com.jujubaprojects.lojavirtual.Controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +30,17 @@ public class PessoaController {
 
     @PostMapping("/")
     public ResponseEntity<?> inserir(@RequestBody Pessoa pessoa){
-
       return  this.pessoaService.inserir(pessoa);
     }
 
+    @PutMapping("/")
+    public ResponseEntity<?> alterar(@RequestBody  Pessoa pessoa){
+        return this.pessoaService.alterar(pessoa);
+    }
+
+    @DeleteMapping("/")
+    public void excluir(@PathVariable("id") Pessoa pessoa){
+         this.pessoaService.excluir(pessoa);
+    }
 
 }
