@@ -33,9 +33,9 @@ public class MarcaController {
         return this.marcaService.inserir(marca);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> alterar(@PathVariable("id") long id, Marca marca){
-        return this.marcaService.alterar(marca, id);
+    @PutMapping("/")
+    public ResponseEntity<?> alterar(/*@PathVariable("id") long id,*/ Marca marca){
+        return this.marcaService.alterar(marca);
     }
 
     @DeleteMapping("/{id}")

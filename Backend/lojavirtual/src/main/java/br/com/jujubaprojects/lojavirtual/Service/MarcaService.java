@@ -40,7 +40,7 @@ public class MarcaService {
         }
    }
 
-   public ResponseEntity<?> alterar(Marca marca, Long id){
+   public ResponseEntity<?> alterar(Marca marca){
 
     Optional<Marca> marcaaOptional = this.marcaRepository.findById(marca.getId());
 
