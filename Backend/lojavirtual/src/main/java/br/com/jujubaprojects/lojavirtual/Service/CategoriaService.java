@@ -32,7 +32,7 @@ public class CategoriaService {
         if (categoria.getNome().isEmpty()) {
             System.out.println("Nome da categoria é nulo!");
             return ResponseEntity.badRequest().body("Digite o nome da Categoria!");
-            
+
      } else if(categoriaExistente){
            
             return ResponseEntity.badRequest().body("Categoria existente!");
@@ -65,8 +65,9 @@ public class CategoriaService {
         }
     }
 
-    public void excluir(Long id){
+    public ResponseEntity<?> excluir(Long id){
        Categoria categoria  = this.catogoriaRepository.findById(id).get();
       this.catogoriaRepository.delete(categoria);
+      return ResponseEntity.ok().body("categoria excluido com sucesso !");
     }
 }

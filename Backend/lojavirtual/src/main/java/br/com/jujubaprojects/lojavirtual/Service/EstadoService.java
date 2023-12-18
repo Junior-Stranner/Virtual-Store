@@ -32,7 +32,7 @@ public class EstadoService {
         if (estado.getNome().isEmpty()) {
             System.out.println("Nome da estado é nulo!");
             return ResponseEntity.badRequest().body("Digite o nome da Estado!");
-            
+
      } else if(estadoExistente){
             return new ResponseEntity<>("Não é possivel criar estados com o mesmo nome" , HttpStatus.BAD_REQUEST);
         

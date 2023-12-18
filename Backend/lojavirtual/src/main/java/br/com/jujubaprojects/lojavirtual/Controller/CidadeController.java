@@ -39,13 +39,10 @@ public class CidadeController {
         return this.cidadeService.alterar(cidade, id);
        
     }
-    
-    
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Estado> excluir(@PathVariable("id") long id){
-       this.cidadeService.excluir(id);
-       return ResponseEntity.ok().build();
+    public ResponseEntity<?> excluir(@PathVariable("id") long id){
+       return this.cidadeService.excluir(id);
     }
 
 }

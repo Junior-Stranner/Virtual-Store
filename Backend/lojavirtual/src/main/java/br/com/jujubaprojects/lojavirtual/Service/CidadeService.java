@@ -26,15 +26,13 @@ public class CidadeService {
 
     public ResponseEntity<?> inserir( Cidade cidade){
        // cidade.setDataCriacao(LocalDateTime.now());
-
          List<Cidade> cidades = this.cidadeRepository.findAll();
         boolean cidadeExistente = cidades.stream().anyMatch(ciExistente -> ciExistente.getNome().equals(cidade.getNome()));
-
 
         if (cidade.getNome().isEmpty()) {
             System.out.println("Nome da cidade é nulo!");
             return ResponseEntity.badRequest().body("Digite o nome da cidade!");
-            
+
       } else if(cidadeExistente){
           
             return ResponseEntity.badRequest().body("cidade Existente");
@@ -73,9 +71,10 @@ public class CidadeService {
        }
     }
 
-    public void excluir(long id){
+    public ResponseEntity<?> excluir(long id){
        Cidade cidade = this.cidadeRepository.findById(id).get();
        this.cidadeRepository.delete(cidade);
+       return ResponseEntity.ok().body("cidade excluido com sucesso !");
     }
     
 }

@@ -40,7 +40,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public void excluir(@PathVariable("id") long id){
-        this.categoriaService.excluir(id);
+    public ResponseEntity<?> excluir(@PathVariable("id") long id){
+      return  this.categoriaService.excluir(id);
     }
 }

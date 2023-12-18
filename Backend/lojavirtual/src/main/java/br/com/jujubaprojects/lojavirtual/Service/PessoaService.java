@@ -72,8 +72,9 @@ public class PessoaService {
         
     }
 
-    public void excluir(Pessoa pessoa){
-  //    Pessoa pessoa = this.pessoaRepository.findById(id).get();
+    public ResponseEntity<?> excluir(Long id){
+       Pessoa pessoa = this.pessoaRepository.findById(id).get();
       this.pessoaRepository.delete(pessoa);
+      return ResponseEntity.ok().body("pessoa excluido com sucesso !");
     }
 }
