@@ -11,36 +11,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import br.com.jujubaprojects.lojavirtual.Service.MarcaService;
-import br.com.jujubaprojects.lojavirtual.entity.Marca;
+import br.com.jujubaprojects.lojavirtual.Service.ProdutoImagensService;
+import br.com.jujubaprojects.lojavirtual.entity.ProdutoImagens;
 
 @RestController
-@RequestMapping("/api/marca")
-public class MarcaController {
+@RequestMapping("/api/produtoImagens")
+public class ProdutoImagensController {
     
     @Autowired
-    private MarcaService marcaService;
+    private ProdutoImagensService produtoImagensService;
 
     @GetMapping("/")
-    public List<Marca> buscarTodos(){
-        return this.marcaService.buscarTodos();
+    public List<ProdutoImagens> buscarTodos(){
+        return this.produtoImagensService.buscarTodos();
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> inserir(@RequestBody Marca marca){
-        return this.marcaService.inserir(marca);
+    public ResponseEntity<?> inserir(@RequestParam("idProduto") Long idProduto,  @RequestParam("file") MultipartFile file){
+      return  this.produtoImagensService.inserir(idProduto,file);
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> alterar(@RequestBody  Marca marca){
-        return this.marcaService.alterar(marca);
+    public ResponseEntity<?> alterar(@RequestBody  ProdutoImagens produtoImagens){
+        return this.produtoImagensService.alterar(produtoImagens);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> excluir(@PathVariable("id") Long id){
-        return this.marcaService.excluir(id);
+         return this.produtoImagensService.excluir(id);
     }
-
 }

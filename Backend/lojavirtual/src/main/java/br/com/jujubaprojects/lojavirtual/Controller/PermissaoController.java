@@ -13,34 +13,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jujubaprojects.lojavirtual.Service.MarcaService;
-import br.com.jujubaprojects.lojavirtual.entity.Marca;
+import br.com.jujubaprojects.lojavirtual.Service.PermissaoService;
+import br.com.jujubaprojects.lojavirtual.entity.Permissao;
+import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
+import br.com.jujubaprojects.lojavirtual.entity.Produto;
 
 @RestController
-@RequestMapping("/api/marca")
-public class MarcaController {
-    
-    @Autowired
-    private MarcaService marcaService;
+@RequestMapping("/api/permissao")
+public class PermissaoController {
 
-    @GetMapping("/")
-    public List<Marca> buscarTodos(){
-        return this.marcaService.buscarTodos();
+    @Autowired
+    private  PermissaoService permissaoService;
+    
+
+     @GetMapping("/")
+    public List<Permissao> buscarTodos(){
+        return this.permissaoService.buscarTodos();
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> inserir(@RequestBody Marca marca){
-        return this.marcaService.inserir(marca);
+    public ResponseEntity<?> inserir(@RequestBody Permissao permissao){
+      return  this.permissaoService.inserir(permissao);
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> alterar(@RequestBody  Marca marca){
-        return this.marcaService.alterar(marca);
+    public ResponseEntity<?> alterar(@RequestBody  Permissao permissao){
+        return this.permissaoService.alterar(permissao);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> excluir(@PathVariable("id") Long id){
-        return this.marcaService.excluir(id);
+         return this.permissaoService.excluir(id);
     }
 
 }
