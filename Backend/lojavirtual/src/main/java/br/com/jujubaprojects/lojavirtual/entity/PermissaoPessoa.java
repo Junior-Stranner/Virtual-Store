@@ -20,15 +20,14 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_permissao")
+@Table(name = "tb_permissao_pessoa")
 @Data
-public class Permissao {
+public class PermissaoPessoa {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permissao_sequence")
-    @SequenceGenerator(name = "permissao_sequence", sequenceName = "permissao_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permissao_pessoa_sequence")
+    @SequenceGenerator(name = "permissao_pessoa_sequence", sequenceName = "permissao_pessoa_sequence", allocationSize = 1)
     private long id;
-    private String nome;
 
     @CreatedDate
     @Column(name = "data_criacao" , updatable = false)
@@ -42,6 +41,12 @@ public class Permissao {
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
+    @ManyToOne()
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
+    @ManyToOne()
+    @JoinColumn(name = "permissao_id")
+    private Permissao permissao;
 }
 
