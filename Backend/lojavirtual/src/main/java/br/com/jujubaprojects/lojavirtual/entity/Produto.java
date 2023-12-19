@@ -28,6 +28,7 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequence")
     @SequenceGenerator(name = "pessoa_sequence", sequenceName = "pessoa_sequence", allocationSize = 1)
     private long id;
+    private String nome;
 
     private String descricaoCurta;
     private String descricaoDetalhada;
