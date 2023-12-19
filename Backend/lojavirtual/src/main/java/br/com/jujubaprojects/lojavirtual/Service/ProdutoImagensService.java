@@ -38,8 +38,6 @@ public class ProdutoImagensService {
     public ResponseEntity<?> inserir(Long idProduto, MultipartFile file){
         Optional<Produto> produtoOptional = this.produtoRepository.findById(idProduto);
 
-
-
        if (produtoOptional.isPresent()) {
         Produto produto = produtoOptional.get();
         ProdutoImagens produtoImagens = new ProdutoImagens();
@@ -48,7 +46,7 @@ public class ProdutoImagensService {
 			if (!file.isEmpty()) {
 				byte[] bytes = file.getBytes();
                 String nomeImagem = String.valueOf(produto.getId()) + file.getOriginalFilename();
-				Path caminho = Paths.get("c:/imagens/" +nomeImagem );
+				Path caminho = Paths.get("d:/Junior Stranner/" +nomeImagem );
 				Files.write(caminho, bytes);
                 produtoImagens.setNome(nomeImagem);
 
@@ -75,7 +73,7 @@ public class ProdutoImagensService {
         if(produtoImagensOptional.isPresent()){
         ProdutoImagens  produtoImagensExistente = produtoImagensOptional.get();
 
-        produtoImagensExistente.setNome(produtoImagens.getNome());
+     //   produtoImagensExistente.setNome(produtoImagens.getNome());
         produtoImagensExistente.setDataCriacao(produtoImagens.getDataCriacao());
         
         produtoImagensExistente.setDataAtualizacao(LocalDateTime.now());
