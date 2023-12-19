@@ -68,12 +68,10 @@ public class ProdutoImagensService {
     public ResponseEntity<?> alterar(ProdutoImagens produtoImagens){
 
         Optional<ProdutoImagens> produtoImagensOptional = this.produtoImagensRepository.findById(produtoImagens.getId());
-     //   Categoria categoriaExistente = null;
 
         if(produtoImagensOptional.isPresent()){
         ProdutoImagens  produtoImagensExistente = produtoImagensOptional.get();
 
-     //   produtoImagensExistente.setNome(produtoImagens.getNome());
         produtoImagensExistente.setDataCriacao(produtoImagens.getDataCriacao());
         
         produtoImagensExistente.setDataAtualizacao(LocalDateTime.now());
@@ -82,7 +80,6 @@ public class ProdutoImagensService {
              return ResponseEntity.ok().body("produtoImagens atualizada com sucesso !!");
         }else {
             throw new EntityNotFoundException("produtoImagens não encontrada ! ");
-           // return ResponseEntity.badRequest().body("Categoria não encontrada !");
 
         }
     }
