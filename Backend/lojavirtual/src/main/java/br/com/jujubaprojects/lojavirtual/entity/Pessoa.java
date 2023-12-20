@@ -20,8 +20,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_pessoa")
@@ -57,7 +55,7 @@ public class Pessoa {
    private Cidade cidade;
 
    @OneToMany(mappedBy = "pessoa", orphanRemoval = true , cascade = CascadeType.ALL)
-   @Setter(value = AccessLevel.NONE)
+ //  @Setter(value = AccessLevel.NONE)
    private List<PermissaoPessoa> permissaoPessoas;
 
    public Pessoa(){
@@ -159,11 +157,12 @@ public class Pessoa {
       this.cidade = cidade;
    }
 
- /*   public void setPermissaoPessoas(List<PermissaoPessoa> PermissaoPessoa){    
+    public void setPermissaoPessoas(List<PermissaoPessoa> NewPermissaoPessoas){    
 
-       for (PermissaoPessoa permissao : PermissaoPessoa) {
-          permissao.
+       for (PermissaoPessoa pessoa : NewPermissaoPessoas) {
+         pessoa.setPessoa(this);
        }
-   }*/
+       this.permissaoPessoas = NewPermissaoPessoas;
+   }
    
   }

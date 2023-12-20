@@ -24,31 +24,37 @@ public class PessoaService {
 
     }
 
-    public ResponseEntity<?> inserir(Pessoa pessoa) {
+    public ResponseEntity<?> inserir(Pessoa pessoa){
+
         try {
+
+
             if (pessoa.getCpf().isEmpty()) {
-                pessoa.setCpf("ValorPadraoParaCPF");
-            }
-    
-            List<Pessoa> pessoas = this.pessoaRepository.findAll();
-            boolean pessoaExistente = pessoas.stream().anyMatch(pExistente -> pExistente.getCpf().equals(pessoa.getCpf()));
-    
-            if (pessoa.getNome().isEmpty()) {
-                System.out.println("Nome da pessoa é nulo!");
-                return ResponseEntity.badRequest().body("Digite o nome da Pessoa!");
-            } else if (pessoaExistente) {
-                return ResponseEntity.badRequest().body("Pessoa Existente");
-            } else {
-                this.pessoaRepository.save(pessoa);
-                return new ResponseEntity<>("Pessoa criada com sucesso ! ", HttpStatus.CREATED);
-            }
+            pessoa.setCpf("ValorPadraoParaCPF");
+        }
+        List<Pessoa> pessoas = this.pessoaRepository.findAll();
+        boolean pessoaExistente = pessoas.stream().anyMatch(pExistente -> pExistente.getCpf().equals(pessoa.getCpf()));
+
+
+        if (pessoa.getNome().isEmpty()) {
+            System.out.println("Nome da categoria é nulo!");
+            return ResponseEntity.badRequest().body("Digite o nome da Pessoa!");
+
+      } else if(pessoaExistente){
+       
+
+            return ResponseEntity.badRequest().body("Pessoa Existente");
+        }else{
+        this.pessoaRepository.save(pessoa);
+        return new ResponseEntity<>("Pessoa criada com sucesso ! ", HttpStatus.CREATED);
+        }
+            
         } catch (Exception e) {
+            // TODO: handle exception
             e.printStackTrace();
-        //    System.out.println("Erro ao cadastrar a pessoa....");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao cadastrar a pessoa.");
+            return ResponseEntity.internalServerError().body("Erro ao cadastrar ......");
         }
     }
-    
       
 
     public ResponseEntity<?> alterar(Pessoa pessoa){
