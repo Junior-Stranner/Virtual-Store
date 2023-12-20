@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.CidadeRepository;
 import br.com.jujubaprojects.lojavirtual.entity.Cidade;
-import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -26,6 +25,7 @@ public class CidadeService {
 
     public ResponseEntity<?> inserir( Cidade cidade){
        // cidade.setDataCriacao(LocalDateTime.now());
+
          List<Cidade> cidades = this.cidadeRepository.findAll();
         boolean cidadeExistente = cidades.stream().anyMatch(ciExistente -> ciExistente.getNome().equals(cidade.getNome()));
 

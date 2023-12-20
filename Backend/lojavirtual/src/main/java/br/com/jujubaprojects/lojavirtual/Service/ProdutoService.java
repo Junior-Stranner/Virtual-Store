@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.ProdutoRepository;
-import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 import br.com.jujubaprojects.lojavirtual.entity.Produto;
 import jakarta.persistence.EntityNotFoundException;
 
