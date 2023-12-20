@@ -21,17 +21,10 @@ public class PessoaClienteController {
     @Autowired
     private PessoaClienteService pessoaClienteService;
 
-    @GetMapping("/")
-    public List<PessoaClienteRequestDTO> buscarTodos(){
-        return this.pessoaClienteService.buscarTodos();
-    }
-
     @PostMapping("/")
-    public ResponseEntity<?> inserirPessoaCliente(@RequestBody PessoaClienteRequestDTO pessoaClienteRequestDTO){
-  //   Pessoa pessoa = new PessoaClienteRequestDTO().converter(pessoaClienteRequestDTO);
-      return  this.pessoaClienteService.inserirPessoaCliente(pessoaClienteRequestDTO);
+    public Pessoa inserir(@RequestBody PessoaClienteRequestDTO pessoaClienteRequestDTO){
+        return this.pessoaClienteService.registrar(pessoaClienteRequestDTO);
     }
-
 /*     @PutMapping("/")
     public ResponseEntity<?> alterar(@RequestBody  Pessoa pessoa){
         return this.pessoaService.alterar(pessoa);
