@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jujubaprojects.lojavirtual.Service.PermissaoService;
 import br.com.jujubaprojects.lojavirtual.entity.Permissao;
-import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
-import br.com.jujubaprojects.lojavirtual.entity.Produto;
 
 @RestController
 @RequestMapping("/api/permissao")
@@ -37,7 +35,7 @@ public class PermissaoController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> alterar(@RequestBody  Permissao permissao){
+    public ResponseEntity<?> alterar(@RequestBody Permissao permissao){
         return this.permissaoService.alterar(permissao);
     }
 

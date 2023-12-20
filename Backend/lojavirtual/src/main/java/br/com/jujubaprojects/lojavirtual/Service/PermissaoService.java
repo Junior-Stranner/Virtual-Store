@@ -24,6 +24,7 @@ public class PermissaoService {
     }
 
     public ResponseEntity<?> inserir(Permissao permissao){
+        try {
        List<Permissao> permissaoes = this.permissaoRepository.findAll();
        boolean permissaoExistente = permissaoes.stream().anyMatch(permiExistente -> permiExistente.getNome().equals(permissao.getNome()));
 
@@ -38,6 +39,13 @@ public class PermissaoService {
        return new ResponseEntity<>("Permissão cadastrada com sucesso !",HttpStatus.CREATED);
 
        }
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+          return ResponseEntity.internalServerError().body("Erro ao cadastrar a permissão ...");
+        }
+      
     }
 
     public ResponseEntity<?> alterar(Permissao permissao){
