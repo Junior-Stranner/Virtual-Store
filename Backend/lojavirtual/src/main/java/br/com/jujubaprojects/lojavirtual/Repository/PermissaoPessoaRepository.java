@@ -8,5 +8,6 @@ import br.com.jujubaprojects.lojavirtual.entity.PermissaoPessoa;
 public interface PermissaoPessoaRepository extends JpaRepository<Permissao, Long>{
 
     void save(PermissaoPessoa permissaoPessoa);
+
     
 }

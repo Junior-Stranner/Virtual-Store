@@ -2,6 +2,7 @@ package br.com.jujubaprojects.lojavirtual.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,43 +17,29 @@ import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 @Service
 public class PermissaoPessoaService {
+
+    @Autowired
+    private PermissaoPessoaRepository permissaoPessoaRepository;
     
     @Autowired 
-    private PermissaoPessoaRepository permissaoPessoaRepository;
-
-     @Autowired 
     private PermissaoRepository permissaoRepository;
 
-  
-    public void vincularPessoaPermissaoCliente(Pessoa pessoa){
-      // Busca na base de dados por permissões com o nome "cliente"
-      List<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
-  
-      // Verifica se encontrou pelo menos uma permissão com o nome "cliente"
-      if(listaPermissao.size() > 0){
-          // Cria uma instância de PermissaoPessoa
-          PermissaoPessoa permissaoPessoa = new PermissaoPessoa();
-          
-          // Configura a pessoa que será vinculada
-          permissaoPessoa.setPessoa(pessoa);
-          
-          // Configura a permissão (utiliza a primeira encontrada na lista)
-          permissaoPessoa.setPermissao(listaPermissao.get(0));
-          
-          // Define a data de criação como o momento atual
-          permissaoPessoa.setDataCriacao(LocalDateTime.now());
-          
-          // Salva a vinculação na base de dados
-          this.permissaoPessoaRepository.save(permissaoPessoa);
-      }
-  }
-  
-
     public List<Permissao> buscarTodos(){
-        return this.permissaoPessoaRepository.findAll();
+        return this.permissaoRepository.findAll();
     }
 
-    public ResponseEntity<?> inserir(Permissao permissao){
+
+    public void vincularPessoaPermissaoCliente(Pessoa pessoa){
+        List<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
+        if(listaPermissao.size()>0){
+            PermissaoPessoa permissaoPessoa = new PermissaoPessoa();
+            permissaoPessoa.setPessoa(pessoa);
+            permissaoPessoa.setPermissao(listaPermissao.get(0));
+            permissaoPessoa.setDataCriacao(LocalDateTime.now());
+           this.permissaoPessoaRepository.save(permissaoPessoa);
+        }
+    }
+ /*    public ResponseEntity<?> inserir(Permissao permissao){
         try {
        List<Permissao> permissaoes = this.permissaoRepository.findAll();
        boolean permissaoExistente = permissaoes.stream().anyMatch(permiExistente -> permiExistente.getNome().equals(permissao.getNome()));
@@ -77,7 +64,7 @@ public class PermissaoPessoaService {
       
     }
 
-/*     public ResponseEntity<?> alterar(Permissao permissao){
+    public ResponseEntity<?> alterar(Permissao permissao){
 
     Optional<Permissao> permisOptional = this.permissaoRepository.findById(permissao.getId());
 
@@ -98,5 +85,5 @@ public class PermissaoPessoaService {
        Permissao permissao = this.permissaoRepository.findById(id).get();
       this.permissaoRepository.delete(permissao);
       return ResponseEntity.ok().body("permissao excluido com sucesso !");
-    }*/
+     }*/
 }
