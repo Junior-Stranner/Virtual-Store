@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jujubaprojects.lojavirtual.Service.CidadeService;
 import br.com.jujubaprojects.lojavirtual.entity.Cidade;
-import br.com.jujubaprojects.lojavirtual.entity.Estado;
 
 @RestController
 @RequestMapping("/api/cidade")
