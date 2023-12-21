@@ -25,7 +25,7 @@ import jakarta.persistence.Table;
 @Table(name = "tb_pessoa")
 
 public class Pessoa {
-    
+   
      @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequence")
     @SequenceGenerator(name = "pessoa_sequence", sequenceName = "pessoa_sequence", allocationSize = 1)

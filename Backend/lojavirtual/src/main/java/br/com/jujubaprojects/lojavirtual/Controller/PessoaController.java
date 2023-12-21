@@ -28,6 +28,12 @@ public class PessoaController {
         return this.pessoaService.buscarTodos();
     }
 
+    @GetMapping("/clientes")
+    public List<Pessoa> findAllClientes(){
+        return null;
+
+    }
+
     @PostMapping("/")
     public ResponseEntity<?> inserir(@RequestBody Pessoa pessoa){
       return  this.pessoaService.inserir(pessoa);

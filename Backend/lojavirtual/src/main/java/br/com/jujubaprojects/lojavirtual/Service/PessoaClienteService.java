@@ -1,15 +1,11 @@
 package br.com.jujubaprojects.lojavirtual.Service;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
 
-import org.springframework.beans.BeanUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.PessoaRepository;
-import br.com.jujubaprojects.lojavirtual.dto.PessoaClienteRequestDTO;
-import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 @Service
 public class PessoaClienteService {
@@ -25,8 +21,8 @@ public class PessoaClienteService {
 
    
     
-   public Pessoa registrar(Pessoa pessoaCliente) {
-    // Criar uma nova instância de Pessoa
+ /*  public Pessoa registrar(Pessoa pessoaCliente) {
+    // Criar uma nova instância de PessoaClienteRequestDTO
     PessoaClienteRequestDTO pessoaClienteRequestDTO = new PessoaClienteRequestDTO();
 
     // Definir a data de criação
@@ -57,6 +53,6 @@ public class PessoaClienteService {
     // Retornar a pessoa criada
     return pessoaCliente;
 }
-
+*/
 
 }
