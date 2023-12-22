@@ -6,17 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.jujubaprojects.lojavirtual.Repository.PermissaoPessoaRepository;
 import br.com.jujubaprojects.lojavirtual.Repository.PermissaoRepository;
 import br.com.jujubaprojects.lojavirtual.entity.Permissao;
-import br.com.jujubaprojects.lojavirtual.entity.PermissaoPessoa;
 import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 @Service
 public class PermissaoPessoaService {
 
-    @Autowired
-    private PermissaoPessoaRepository permissaoPessoaRepository;
+   
     
     @Autowired 
     private PermissaoRepository permissaoRepository;
@@ -25,17 +22,11 @@ public class PermissaoPessoaService {
         return this.permissaoRepository.findAll();
     }
 
-
-    public void vincularPessoaPermissaoCliente(Pessoa pessoa){
-        List<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
-        if(listaPermissao.size()>0){
-            PermissaoPessoa permissaoPessoa = new PermissaoPessoa();
-            permissaoPessoa.setPessoa(pessoa);
-            permissaoPessoa.setPermissao(listaPermissao.get(0));
-            permissaoPessoa.setDataCriacao(LocalDateTime.now());
-           this.permissaoPessoaRepository.save(permissaoPessoa);
-        }
+    public void vincularPessoaPermissaoCliente(Pessoa pessoaCliente) {
     }
+
+
+  
  /*    public ResponseEntity<?> inserir(Permissao permissao){
         try {
        List<Permissao> permissaoes = this.permissaoRepository.findAll();

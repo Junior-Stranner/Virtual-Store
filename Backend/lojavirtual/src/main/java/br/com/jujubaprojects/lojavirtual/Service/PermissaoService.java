@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.jujubaprojects.lojavirtual.Repository.PermissaoRepository;
 import br.com.jujubaprojects.lojavirtual.entity.Permissao;
+import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -21,6 +22,17 @@ public class PermissaoService {
 
     public List<Permissao> buscarTodos(){
         return this.permissaoRepository.findAll();
+    }
+
+      public void vincularPessoaPermissaoCliente(Pessoa pessoa){
+        List<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
+        if(listaPermissao.size()>0){
+            Permissao permissaoPessoa = new Permissao();
+            permissaoPessoa.setPessoa(pessoa);
+            permissaoPessoa.setPermissao(listaPermissao.get(0));
+            permissaoPessoa.setDataCriacao(LocalDateTime.now());
+           this.permissaoRepository.save(permissaoPessoa);
+        }
     }
 
     public ResponseEntity<?> inserir(Permissao permissao){

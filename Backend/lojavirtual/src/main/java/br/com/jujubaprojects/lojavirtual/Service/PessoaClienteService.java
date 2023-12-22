@@ -2,26 +2,37 @@ package br.com.jujubaprojects.lojavirtual.Service;
 
 
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.jujubaprojects.lojavirtual.Repository.PessoaRepository;
+import br.com.jujubaprojects.lojavirtual.Repository.PermissaoRepository;
+import br.com.jujubaprojects.lojavirtual.dto.PessoaClienteRequestDTO;
+import br.com.jujubaprojects.lojavirtual.entity.Permissao;
+import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
+
 
 @Service
 public class PessoaClienteService {
+
     
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private PermissaoRepository permissaoRepository;
 
     @Autowired
-    private PermissaoPessoaService permissaoClienteService;
+    private PermissaoPessoaService permissaoService;
 
+    
     @Autowired
     private EmailService emailService;
 
    
-    
- /*  public Pessoa registrar(Pessoa pessoaCliente) {
+    public List<Permissao>  findByNomeCliente() {
+
+        Pessoa pessoaCliente = new Pessoa();
     // Criar uma nova instância de PessoaClienteRequestDTO
     PessoaClienteRequestDTO pessoaClienteRequestDTO = new PessoaClienteRequestDTO();
 
@@ -32,10 +43,10 @@ public class PessoaClienteService {
     BeanUtils.copyProperties(pessoaClienteRequestDTO, pessoaCliente);
 
     // Salvar a pessoa no repositório
-    this.pessoaRepository.save(pessoaCliente);
+    this.permissaoRepository.save(pessoaCliente);
 
     // Vincular permissão de cliente
-    permissaoClienteService.vincularPessoaPermissaoCliente(pessoaCliente);
+    permissaoService.vincularPessoaPermissaoCliente(pessoaCliente);
 
     // Enviar e-mail de confirmação
     emailService.enviarEmailTexto(pessoaCliente.getEmail(),"Cadastro na loja jujuba",
@@ -51,8 +62,7 @@ public class PessoaClienteService {
     // Enviar e-mail com template
     emailService.enviarEmailTexto(email, "Cadastro na Loja Tabajara", mensagem);
     // Retornar a pessoa criada
-    return pessoaCliente;
+    return  this.permissaoRepository.findByNomeCliente("cliente");
 }
-*/
 
 }

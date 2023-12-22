@@ -7,4 +7,5 @@ import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 public interface PessoaClienteRepository extends JpaRepository<Pessoa , Long> {
     
+ //   List<Permissao> findByNomeCliente(String nome);
 }

@@ -13,6 +13,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -38,6 +40,14 @@ public class Permissao {
     @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
+
+    @ManyToOne()
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
+    public Permissao(){
+
+    }
 
 
 public Permissao(long id, String nome, LocalDateTime dataCriacao, LocalDateTime dataAtualizacao) {
@@ -77,6 +87,14 @@ public LocalDateTime getDataAtualizacao() {
 
 public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
     this.dataAtualizacao = dataAtualizacao;
+}
+
+
+public void setPessoa(Pessoa pessoa) {
+}
+
+
+public void setPermissao(Permissao permissao) {
 }
 
 
