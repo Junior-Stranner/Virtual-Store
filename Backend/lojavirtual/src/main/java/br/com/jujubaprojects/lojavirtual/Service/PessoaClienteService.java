@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.jujubaprojects.lojavirtual.Repository.PermissaoRepository;
 import br.com.jujubaprojects.lojavirtual.dto.PessoaClienteRequestDTO;
@@ -23,14 +24,20 @@ public class PessoaClienteService {
     private PermissaoRepository permissaoRepository;
 
     @Autowired
-    private PermissaoPessoaService permissaoService;
+    private PermissaoService permissaoService;
 
     
     @Autowired
     private EmailService emailService;
 
+      public Pessoa registrar(@RequestBody PessoaClienteRequestDTO pessoaClienteRequestDTO){
+        Pessoa pessoaCliente = PessoaClienteRequestDTO.converter(new PessoaClienteRequestDTO());
+          return this.permissaoRepository.save(pessoaCliente);
+ 
+    }
+
    
-    public List<Permissao>  findByNomeCliente() {
+    public Pessoa registrar() {
 
         Pessoa pessoaCliente = new Pessoa();
     // Criar uma nova instância de PessoaClienteRequestDTO
@@ -42,11 +49,11 @@ public class PessoaClienteService {
     // Copiar as propriedades de pessoaClienteRequestDTO para pessoa
     BeanUtils.copyProperties(pessoaClienteRequestDTO, pessoaCliente);
 
-    // Salvar a pessoa no repositório
-    this.permissaoRepository.save(pessoaCliente);
-
     // Vincular permissão de cliente
     permissaoService.vincularPessoaPermissaoCliente(pessoaCliente);
+
+     // Salvar a pessoa no repositório
+    this.permissaoRepository.save(pessoaCliente);
 
     // Enviar e-mail de confirmação
     emailService.enviarEmailTexto(pessoaCliente.getEmail(),"Cadastro na loja jujuba",

@@ -1,17 +1,15 @@
 package br.com.jujubaprojects.lojavirtual.Repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.jujubaprojects.lojavirtual.entity.Permissao;
 import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
-public interface PermissaoRepository extends JpaRepository<Permissao, Long>{
+public interface PermissaoPessoaRepository extends JpaRepository<Permissao, Long>{
+
+    void save(Pessoa pessoaCliente);
+
+
+
     
-    List<Permissao> findByNomeCliente(String nome);
-
-    Pessoa save(Pessoa pessoaCliente);
-
-
 }

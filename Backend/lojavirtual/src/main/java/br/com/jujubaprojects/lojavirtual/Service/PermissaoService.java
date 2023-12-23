@@ -24,8 +24,8 @@ public class PermissaoService {
         return this.permissaoRepository.findAll();
     }
 
-      public void vincularPessoaPermissaoCliente(Pessoa pessoa){
-        List<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
+     public void vincularPessoaPermissaoCliente(Pessoa pessoa){
+        List<Permissao> listaPermissao = permissaoRepository.findByNomeCliente("cliente");
         if(listaPermissao.size()>0){
             Permissao permissaoPessoa = new Permissao();
             permissaoPessoa.setPessoa(pessoa);
@@ -35,6 +35,7 @@ public class PermissaoService {
         }
     }
 
+    
     public ResponseEntity<?> inserir(Permissao permissao){
         try {
        List<Permissao> permissaoes = this.permissaoRepository.findAll();

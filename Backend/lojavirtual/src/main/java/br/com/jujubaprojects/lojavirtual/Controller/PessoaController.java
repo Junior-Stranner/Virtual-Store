@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jujubaprojects.lojavirtual.Service.PessoaService;
-import br.com.jujubaprojects.lojavirtual.entity.Permissao;
 import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 @RestController
@@ -29,11 +28,6 @@ public class PessoaController {
         return this.pessoaService.buscarTodos();
     }
 
-    @GetMapping("/clientes")
-    public List<Permissao> findAllClientes(){
-        return this.pessoaService.findByPermissoesNome();
-
-    }
 
     @PostMapping("/")
     public ResponseEntity<?> inserir(@RequestBody Pessoa pessoa){

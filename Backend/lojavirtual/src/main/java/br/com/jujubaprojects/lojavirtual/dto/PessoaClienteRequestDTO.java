@@ -1,6 +1,8 @@
 package br.com.jujubaprojects.lojavirtual.dto;
 
 
+import org.springframework.beans.BeanUtils;
+
 import br.com.jujubaprojects.lojavirtual.entity.Cidade;
 import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
@@ -25,10 +27,10 @@ public class PessoaClienteRequestDTO {
       this.cidade = entity.getCidade();
     }
 
-  /*   public static Pessoa converter(PessoaClienteRequestDTO pessoaClienteRequestDTO) {
+     public static Pessoa converter(PessoaClienteRequestDTO pessoaClienteRequestDTO) {
         Pessoa pessoa = new Pessoa();
         BeanUtils.copyProperties(pessoaClienteRequestDTO, pessoa);
         return pessoa;
-    }*/
+    }
 
 }
