@@ -26,44 +26,43 @@ import lombok.Data;
 @Data
 public class Pessoa {
 
-     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequence")
-    @SequenceGenerator(name = "pessoa_sequence", sequenceName = "pessoa_sequence", allocationSize = 1)
-    private long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequence")
+   @SequenceGenerator(name = "pessoa_sequence", sequenceName = "pessoa_sequence", allocationSize = 1)
+   private long id;
 
-    private String nome;
-    private String cpf = "cpfPadrão";
-    private String email;
-    private String senha;
-    private String endereco;
-    private String cep;
+   private String nome;
+   private String cpf = "cpfPadrão";
+   private String email;
+   private String senha;
+   private String endereco;
+   private String cep;
 
-    @CreatedDate
-    @Column(name = "data_criacao" , updatable = false)
-    @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
-    @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
-    private LocalDateTime dataCriacao = LocalDateTime.now();
+   @CreatedDate
+   @Column(name = "data_criacao", updatable = false)
+   @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
+   @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
+   private LocalDateTime dataCriacao = LocalDateTime.now();
 
    @LastModifiedDate
-    @Column(name = "data_atualizacao" , updatable = true)
-    @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
-    @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
-    private LocalDateTime dataAtualizacao = LocalDateTime.now();
+   @Column(name = "data_atualizacao", updatable = true)
+   @DateTimeFormat(pattern = "dd/MM/yyyy - HH:mm")
+   @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
+   private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
-    @ManyToOne()
-    @JoinColumn(name = "cidade_id")
+   @ManyToOne()
+   @JoinColumn(name = "cidade_id")
    private Cidade cidade;
 
-    @OneToMany(mappedBy = "pessoa")
-    private List<Permissao> permissaoPessoa;
+   @OneToMany(mappedBy = "pessoa")
+   private List<Permissao> permissaoPessoa;
 
+   public void setPermissaoPessoas(List<Permissao> listaPermissaoPessoas) {
 
-    public void setPermissaoPessoas(List<Permissao> listaPermissaoPessoas){    
-
-       for (Permissao permissaoPessoa : listaPermissaoPessoas) {
+      for (Permissao permissaoPessoa : listaPermissaoPessoas) {
          permissaoPessoa.setPessoa(this);
-       }
-       this.permissaoPessoa = listaPermissaoPessoas;
+      }
+      this.permissaoPessoa = listaPermissaoPessoas;
    }
-   
-  }
+
+}

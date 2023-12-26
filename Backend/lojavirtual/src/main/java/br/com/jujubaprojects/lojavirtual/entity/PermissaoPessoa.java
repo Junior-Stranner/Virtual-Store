@@ -1,4 +1,4 @@
-/*package br.com.jujubaprojects.lojavirtual.entity;
+package br.com.jujubaprojects.lojavirtual.entity;
 
 import java.time.LocalDateTime;
 
@@ -45,6 +45,9 @@ public class PermissaoPessoa {
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
+    @ManyToOne
+    @JoinColumn(name = "Permissao_id")
+    private Permissao permissao;
    
-}*/
+}
 

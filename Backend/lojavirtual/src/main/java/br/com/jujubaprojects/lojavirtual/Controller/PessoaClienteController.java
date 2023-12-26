@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jujubaprojects.lojavirtual.Repository.PermissaoPessoaRepository;
 import br.com.jujubaprojects.lojavirtual.Repository.PessoaClienteRepository;
 import br.com.jujubaprojects.lojavirtual.Service.PessoaClienteService;
-import br.com.jujubaprojects.lojavirtual.dto.PessoaClienteRequestDTO;
-import br.com.jujubaprojects.lojavirtual.entity.Permissao;
-import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 
 @RestController

@@ -9,7 +9,7 @@ import br.com.jujubaprojects.lojavirtual.entity.Pessoa;
 
 public interface PermissaoRepository extends JpaRepository<Permissao, Long>{
     
-    List<Permissao> findByNomeCliente(String nome);
+    List<Permissao> findByNome(String nome);
 
     Pessoa save(Pessoa pessoaCliente);
 

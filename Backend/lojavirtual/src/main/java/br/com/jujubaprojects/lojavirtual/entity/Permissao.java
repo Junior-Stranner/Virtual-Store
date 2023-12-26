@@ -1,6 +1,7 @@
 package br.com.jujubaprojects.lojavirtual.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -41,9 +42,10 @@ public class Permissao {
     @JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
-    @ManyToOne()
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+   @ManyToOne
+   @JoinColumn(name = "pessoa_id")  
+   private Pessoa pessoa;
+
 
     public Permissao(){
 

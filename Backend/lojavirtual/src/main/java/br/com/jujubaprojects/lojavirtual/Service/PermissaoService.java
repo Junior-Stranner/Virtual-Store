@@ -25,7 +25,7 @@ public class PermissaoService {
     }
 
      public void vincularPessoaPermissaoCliente(Pessoa pessoa){
-        List<Permissao> listaPermissao = permissaoRepository.findByNomeCliente("cliente");
+        List<Permissao> listaPermissao = permissaoRepository.findByNome("cliente");
         if(listaPermissao.size()>0){
             Permissao permissaoPessoa = new Permissao();
             permissaoPessoa.setPessoa(pessoa);
@@ -36,7 +36,7 @@ public class PermissaoService {
     }
 
     
-    public ResponseEntity<?> inserir(Permissao permissao){
+ /*   public ResponseEntity<?> inserir(Permissao permissao){
         try {
        List<Permissao> permissaoes = this.permissaoRepository.findAll();
        boolean permissaoExistente = permissaoes.stream().anyMatch(permiExistente -> permiExistente.getNome().equals(permissao.getNome()));
@@ -82,5 +82,5 @@ public class PermissaoService {
        Permissao permissao = this.permissaoRepository.findById(id).get();
       this.permissaoRepository.delete(permissao);
       return ResponseEntity.ok().body("permissao excluido com sucesso !");
-    }
+    }*/
 }
